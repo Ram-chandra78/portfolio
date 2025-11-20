@@ -31,7 +31,6 @@ import {
   SiPrettier,
   SiTypescript,
   SiVercel,
-  SiVisualstudiocode,
 } from "react-icons/si";
 import { VscCode } from "react-icons/vsc";
 
