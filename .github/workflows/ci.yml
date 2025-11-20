@@ -1,53 +1,34 @@
-name: CI
+name: Ci/cd for portfolio app
 
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+    push:
+        branches: [main]
+    workflow_dispatch:
 
+permissions:
+    contents: write
 jobs:
-  build:
-    name: Install & Build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    build_and_deploy:
+        runs-on: ubuntu-latest
 
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: npm ci
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '22'
 
-      - name: Lint (if present)
-        run: npm run lint --if-present
+            - name: Install dependencies
+              run: npm install
 
-      - name: Build
-        run: npm run build --if-present
+            - name: Build the React app
+              run: npm run build
 
-      - name: Run tests (if present)
-        run: npm test --if-present
-
-  deploy-vercel:
-    name: Deploy to Vercel (optional)
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.ref == 'refs/heads/main' && secrets.VERCEL_TOKEN != ''
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Deploy to Vercel
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        run: npx vercel --prod --token $VERCEL_TOKEN --confirm
+            - name: Deploy to GitHub Pages
+              uses: jamesIves/github-pages-deploy-action@4.1.0
+              with:
+                  branch: gh-pages
+                  folder: dist
+        
