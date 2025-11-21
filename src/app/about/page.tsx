@@ -26,11 +26,11 @@ import {
 
 // Tools Array
 const TOOLS = [
-  {
-    name: "VS Code",
-    icon: <SiVisualstudiocode size={"50px"} color="#007acc" />,
-    color: "#007acc",
-  },
+  // {
+  //   name: "VS Code",
+  //   icon: <SiVisualstudiocode size={"50px"} color="#007acc" />,
+  //   color: "#007acc",
+  // },
   {
     name: "JavaScript",
     icon: <SiJavascript size={"50px"} color="#f7df1e" />,
