@@ -13,7 +13,6 @@ import {
   SiPrettier,
   SiTypescript,
   SiVercel,
-  SiVisualstudiocode,
 } from "react-icons/si";
 import { RiReactjsFill, RiTailwindCssFill } from "react-icons/ri";
 import { TbBrandNextjs, TbTerminal2 } from "react-icons/tb";
