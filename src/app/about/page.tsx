@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { DiMongodb, DiNginx, DiNpm, DiPostgresql, DiVim } from "react-icons/di";
-import { SiVscode, SiTwitter } from "react-icons/si";
+import { SiVscode } from "react-icons/si";
 
 import {
   FaAws,
