@@ -1,10 +1,9 @@
-a"use client";
+"use client";
 
 import { useInView } from "framer-motion";
 import React, { useRef } from "react";
 import { Button } from "../ui/button";
 import { SiGithub, SiInstagram, SiLinkedin } from "react-icons/si";
-import { Linkedin } from "lucide-react";
 import { config } from "@/data/config";
 import Link from "next/link";
 
@@ -12,34 +11,32 @@ const BUTTONS = [
   {
     name: "Github",
     href: config.social.github,
-    icon: <SiGithub size={"24"} color={"#fff"} />,
+    icon: SiGithub,
   },
   {
     name: "LinkedIn",
     href: config.social.linkedin,
-    icon: <SiLinkedin size={"24"} color={"#fff"} />,
+    icon: SiLinkedin,
   },
-  // {
-  //   name: "Twitter",
-  //   href: config.social.twitter,
-  //   icon: <SiTwitter size={"24"} color={"#fff"} />,
-  // },
   {
     name: "Instagram",
     href: config.social.instagram,
-    icon: <SiInstagram size={"24"} color={"#fff"} />,
+    icon: SiInstagram,
   },
 ];
 
 const SocialMediaButtons = () => {
   const ref = useRef<HTMLDivElement>(null);
   const show = useInView(ref, { once: true });
+
   return (
-    <div ref={ref} className="z-10">
+    <div ref={ref} className="flex gap-2 z-10">
       {show &&
-        BUTTONS.map((button) => (
-          <Link href={button.href} key={button.name} target="_blank">
-            <Button variant={"ghost"}>{button.icon}</Button>
+        BUTTONS.map(({ name, href, icon: Icon }) => (
+          <Link href={href} key={name} target="_blank">
+            <Button variant="ghost" aria-label={name}>
+              <Icon size={24} color="#fff" />
+            </Button>
           </Link>
         ))}
     </div>
